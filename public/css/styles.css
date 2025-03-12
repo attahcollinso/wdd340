@@ -4,3 +4,186 @@
 *:after {
   box-sizing: border-box;
 }
+
+:root {
+  --color-primary: #0B0C10;
+  --color-white: #FFFFFF;
+  --color-secondary: #18D3D3;
+  --color-gray: #C5C6C7;
+  --color-dark: #000000;
+  --color-upgrades: #2525c7;
+}
+
+[class*="col-"] {
+  width: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background: var(--color-dark);
+  justify-content: space-around;
+  align-content: space-between;
+  color: white;
+  font-size: 16px;
+  padding: 20px;
+  margin: 10px;
+
+}
+
+nav a {
+  display: block;
+}
+
+h1 {
+  font-size: 16px;
+  color: var(--color-dark);
+  margin-left: 10px;
+  margin-top: 20px;
+}
+
+#top-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+}
+
+#tools a {
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--color-dark);
+  margin-right: 10px;
+}
+
+header .siteName a {
+  font-size: 25px;
+  text-decoration: none;
+  color: var(--color-dark);
+  margin-left: 10px;
+}
+
+#wrapper {
+  background-color: var(--color-white);
+  margin: 10%;
+  border-radius: 10px;  
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px;
+}
+
+.flex-item {
+  display: grid;
+}
+
+.flex-item ul {
+  line-height: 3.0;
+}
+
+td {
+  text-align: center;
+  width: 200px;
+}
+
+.upgrade-description {
+  font-size: 13px;
+  vertical-align: top;
+  height: 50px;
+  text-decoration: underline;
+  color: var(--color-upgrades);
+}
+
+.upgrade-picture {
+  background-color: var(--color-secondary);
+}
+
+#delorean-splash {
+  background-image: url("../images/vehicles/delorean.jpg");
+  background-size: 250px;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 500px;
+  height: 250px;
+  justify-self: center;
+  justify-content: flex-start;
+  margin: 0 20%;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+#delorean-info p {
+  font-size: 15px;
+}
+#delorean-info {
+  color: var(--color-secondary);
+  background: rgba(255, 255, 255, 0.7);
+  margin-left: 70px;
+  height: 50%;
+  width: 25%;
+  line-height: 0.3;
+}
+
+#own-today {
+  width: 75%;
+  height: 23%;
+}
+
+h3 {
+  margin-left: 30px;
+}
+.copyright {
+  font-size: 11px;
+  margin: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+  .col-1 { width: 8.33%; }
+  .col-2 { width: 16.66%; }
+  .col-3 { width: 25%; }
+  .col-4 { width: 33.33%; }
+  .col-5 { width: 41.66%; }
+  .col-6 { width: 50%; }
+  .col-7 { width: 58.33%; }
+  .col-8 { width: 66.66%; }
+  .col-9 { width: 75%; }
+  .col-10 { width: 83.33%; }
+  .col-11 { width: 91.66%; }
+  .col-12 { width: 100%; }
+
+  #wrapper {
+  border: 5px solid var(--color-secondary);
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .flex-item {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  
+html {
+  background-image: url("../images/site/checkerboard.jpg");
+  background-size: 45% auto;
+  width: 100%;
+  height: 100%;
+}
+}
