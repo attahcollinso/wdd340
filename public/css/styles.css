@@ -153,7 +153,7 @@ h3 {
   margin: 10px;
 }
 
-/* .namePrice {
+.namePrice {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -167,7 +167,7 @@ h3 {
   font-size: 1.35rem;
   font-weight: 500;
   text-decoration: underline;
-} */
+}
 
 #classification-card {
   border-radius: 0.375rem /* 6px */;
