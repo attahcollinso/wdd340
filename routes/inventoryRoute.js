@@ -14,6 +14,7 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 router.get("/detail/:inv_id", utilities.handleErrors(invController.buildByInventoryId));
 
 
+
 router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification));
 router.get("/add-vehicle", utilities.handleErrors(invController.buildAddVehicle));
 router.get("/edit-vehicle/:inv_id", utilities.handleErrors(invController.buildEditVehicle));
