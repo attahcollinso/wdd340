@@ -244,5 +244,6 @@ SET inv_description = REPLACE(inv_description, 'small interiors', 'a huge interi
 -- Update all records in the table `inventory`
 UPDATE inventory
 SET 
-  inv_image = REPLACE(inv_image, '/', 'images/vehicles/'),
-  inv_thumbnail = REPLACE(inv_thumbnail, '/', 'images/vehicles/');
+  inv_image = REPLACE(inv_image, '/images', '/images/vehicles'),
+  inv_thumbnail = REPLACE(inv_thumbnail, '/images', 'images/vehicles');
+

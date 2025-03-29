@@ -34,8 +34,8 @@ Util.buildClassificationGrid = async function(data){
   if(data.length > 0){
     grid = '<ul id="inv-display">'
     data.forEach(vehicle => { 
-      // grid += '<li>'
-      grid += '<li id="classification-card">'
+      grid += '<li>'
+      // grid += '<li id="classification-card">'
       grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
       + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
       + 'details"><img src="' + vehicle.inv_thumbnail 
