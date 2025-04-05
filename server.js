@@ -2,9 +2,9 @@
  * This server.js file is the primary file of the 
  * application. It is used to control the project.
  *******************************************/
-/* ***********************
- * Require Statements
- *************************/
+/* ********************
+*Require Statements
+*************************/
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
@@ -65,5 +65,3 @@ const host = process.env.HOST
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
 })
-
-

@@ -3,4 +3,9 @@
 <% } else {
     res.redirect('/')
 } %>
-<%- message %>
+
+<% if (message) { %>
+    <h1><%- message %></h1>
+    <% } else {
+        res.redirect('/')
+    } %> 
