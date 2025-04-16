@@ -1,0 +1,33 @@
+<h1><%- title %></h1>
+<%- messages() %>
+<% if (errors) { %>
+    <ul class="notice">
+        <% errors.array().forEach(error => { %>
+            <li><%= error.msg %></li>
+        <%  }) %>
+    </ul>
+<% } %>
+
+<form class="account" id="updateForm" action="/inv/update" method="post">
+    <label>Make<input type="text" required value="<%- locals.inv_make %>" placeholder="Manufacturer" name="inv_make" minlength="2" maxlength="50"></label>
+    <label>Model<input type="text" required value="<%- locals.inv_model %>" placeholder="Model" name="inv_model" minlength="2" maxlength="50"></label>
+    <label>Year<input type="number" required value="<%- locals.inv_year %>" placeholder="Year" name="inv_year" min="1900" max="2025"></label>
+    <label>Description
+        <textarea placeholder="Type Good Description here" name="inv_description" minlength="2" maxlength="100" rows="4" required><%- locals.inv_description %></textarea>
+    </label>
+    <label>Image<input type="text" required value="/images/vehicles/no-image.png" placeholder="image.jpg" name="inv_image"></label>
+    <label>Thumbnail<input type="text" required value="/images/vehicles/no-image-tn.png" placeholder="litle_image.jpg" name="inv_thumbnail"></label>
+    <label>Price<input type="number" required value="<%- locals.inv_price %>" placeholder="Price in Dollars" name="inv_price"></label>
+    <label>Miles<input type="number" required value="<%- locals.inv_miles %>" placeholder="Mileage" name="inv_miles"></label>
+    <label>Color<input type="text" required value="<%- locals.inv_color %>" placeholder="Red" name="inv_color"></label>
+    <label>Classification
+        <%- classifications %>
+    </label>
+    <input type="submit" value="Update Vehicle" disabled>
+
+    <input type="hidden" name="inv_id"
+    <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+            <% } %>>
+    <script src="/js/inv-update.js"></script>
+
+</form>
