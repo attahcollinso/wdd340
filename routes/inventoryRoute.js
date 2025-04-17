@@ -5,6 +5,7 @@ const invController = require("../controllers/invController")
 const utilities = require("../utilities/")
 const invValidate = require("../utilities/inventory-valdation")
 
+router.use(["/add-classification", "/add-inventory", "/edit/:inv_Id", "/update", "/delete/:inv_Id", "/delete/",], utilities.checkManager);
 
 router.get("/",utilities.handleErrors(invController.buildManagement));
 // Route to build inventory by classification view
@@ -36,5 +37,8 @@ router.post(
     invValidate.checkUpdateData,
     utilities.handleErrors(invController.updateInventory)
 );
+
+router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDelInventory));
+router.post("/delete", utilities.handleErrors(invController.deleteInventory) )
 
 module.exports = router;

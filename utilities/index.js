@@ -1,7 +1,7 @@
+const jwt = require("jsonwebtoken")
+require("dotenv").config() 
 const invModel = require("../models/inventory-model")
- const Util = {}
- const jwt = require("jsonwebtoken")
- require("dotenv").config() 
+const Util = {}
  
  /* ************************
   * Constructs the nav HTML unordered list
@@ -156,5 +156,36 @@ Util.checkLogin = (req, res, next) => {
       return res.redirect("/account/login")
   }
 }
+
+ /* ****************************************
+  *  Check authorization
+  * ************************************ */
+ Util.checkManager = (req, res, next) => {
+  const { jwt: token } = req.cookies;
+
+  if (!token) {
+      req.flash("notice", "You are not authorized to modify inventory.");
+      return res.redirect("/account/login");
+  }
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, accountData) => {
+      if (err) {
+          req.flash("Please log in");
+          res.clearCookie("jwt");
+          return res.redirect("/account/login");
+      }
+
+      const isAuthorized =
+          accountData.account_type === "Employee" ||
+          accountData.account_type === "Admin";
+
+      if (isAuthorized) {
+          next();
+      } else {
+          req.flash("notice", "You are not authorized to modify inventory.");
+          return res.redirect("/account/login");
+      }
+  });
+};
 
 module.exports = Util

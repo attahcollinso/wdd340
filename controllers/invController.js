@@ -255,4 +255,92 @@ invCont.updateInventory = async function (req, res, next) {
   }
 }
 
+ /* ***************************
+  *  Build delete inventory view
+  * ************************** */
+ invCont.buildDelInventory = async function (req, res, next) {
+    const inventory_id = parseInt(req.params.inv_id)
+    let nav = await utilities.getNav()
+    try {
+        const data = await invModel.getInventoryById(inventory_id);
+        console.log("Inventory Data: ", data, data.classification_id); // Log the data
+        if (!data) {
+            throw new Error("Inventory data not found");
+        }
+
+        const itemData = await invModel.getInventoryById(inventory_id)
+
+        const classificationSelect = await utilities.buildClassificationList(itemData.classification_id)
+        const itemName = `${itemData.inv_make} ${itemData.inv_model}`
+        res.render("inventory/delete-inventory", {
+            title: "delete " + itemName,
+            nav,
+            classifications: classificationSelect,
+            errors: null,
+            inv_id: itemData.inv_id,
+            inv_make: itemData.inv_make,
+            inv_model: itemData.inv_model,
+            inv_year: itemData.inv_year,
+            inv_description: itemData.inv_description,
+            inv_image: itemData.inv_image,
+            inv_thumbnail: itemData.inv_thumbnail,
+            inv_price: itemData.inv_price,
+            inv_miles: itemData.inv_miles,
+            inv_color: itemData.inv_color,
+            classification_id: itemData.classification_id
+        })
+    } catch (error) {
+        next(error);
+    }
+}
+
+/* ***************************
+ *  Delete Inventory Data
+ * ************************** */
+invCont.deleteInventory = async function (req, res, next) {
+    const inventory_id = parseInt(req.body.inv_id)
+    let nav = await utilities.getNav()
+    const {
+        inv_id,
+        inv_make,
+        inv_model,
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_year,
+        inv_miles,
+        inv_color,
+        classification_id,
+    } = req.body
+    const deleteResult = await invModel.deleteInventory(inventory_id)
+
+    if (deleteResult) {
+        const itemName = inv_make + " " + inv_model
+        req.flash("notice", `The ${itemName} was successfully deleted.`)
+        res.redirect("/inv/")
+    } else {
+        c
+        req.flash("notice", "Sorry, the delete failed.")
+        res.status(501).render("inventory/delete-inventory", {
+            title: "Deletet " + itemName,
+            nav,
+            classificationSelect: classificationSelect,
+            errors: null,
+            inv_id,
+            inv_make,
+            inv_model,
+            inv_year,
+            inv_description,
+            inv_image,
+            inv_thumbnail,
+            inv_price,
+            inv_miles,
+            inv_color,
+            classification_id
+        })
+    }
+}
+
+
       module.exports = invCont
